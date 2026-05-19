@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Luxury Home Spa in Riyadh — Velara Beauty Spa</title>
+<meta name="description" content="Velara Beauty Spa brings luxury treatments — massages, Moroccan baths, manicures — directly to your home in Riyadh." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Floating language toggle -->
+<button class="lang-toggle" type="button" aria-label="Switch language" onclick="toggleLang()">
+  <span data-en="العربية" data-ar="EN">العربية</span>
+</button>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-top">
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+    <a href="index.html" class="header-logo">
+      <img src="images/logo.png" alt="Velara Beauty Spa" />
+    </a>
+    <div class="header-actions">
+      <a href="https://www.fresha.com/en-GB/a/velara-spa-home-service-riyadh-king-abdulaziz-rd-al-woroud-district-king-abdullah-ibn-abdulaziz-road-riyadh-11544-saudi-arabia-p25eda7v/all-offer?menu=true&share=true&pId=2792494" target="_blank" class="book-btn" data-en="Book Now" data-ar="احجزي">Book Now</a>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <ul class="nav-list">
+      <li><a href="index.html" data-page="home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+      <li><a href="services.html" data-page="services" data-en="Spa Services" data-ar="الخدمات">Spa Services</a></li>
+      <li><a href="massage.html" data-page="massage" data-en="Massage" data-ar="التدليك">Massage</a></li>
+      <li><a href="moroccan-bath.html" data-page="moroccan" data-en="Moroccan Bath" data-ar="الحمام المغربي">Moroccan Bath</a></li>
+      <li><a href="nails.html" data-page="nails" data-en="Nails" data-ar="الأظافر">Nails</a></li>
+      <li><a href="waxing.html" data-page="waxing" data-en="Waxing" data-ar="إزالة الشعر">Waxing</a></li>
+      <li><a href="packages.html" data-page="packages" data-en="Packages" data-ar="الباقات">Packages</a></li>
+      <li><a href="gallery.html" data-page="gallery" data-en="Gallery" data-ar="المعرض">Gallery</a></li>
+      <li><a href="our-story.html" data-page="story" data-en="Our Story" data-ar="قصتنا">Our Story</a></li>
+      <li><a href="contact.html" data-page="contact" data-en="Contact" data-ar="تواصل">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Eid Banner -->
+<div id="eid-banner" class="eid-banner">
+  <div class="eid-banner-content">
+    <div class="eid-banner-icon">✦</div>
+    <div class="eid-banner-text">
+      <strong data-en="Eid Al Adha Special Offers" data-ar="عروض عيد الأضحى">Eid Al Adha Special Offers</strong>
+      <span data-en="— Save up to 35%" data-ar="— وفّري حتى 35%">— Save up to 35%</span>
+    </div>
+    <a href="packages.html#eid-offers" class="eid-banner-link" data-en="View Offers →" data-ar="عرض العروض →">View Offers →</a>
+  </div>
+  <button class="eid-banner-close" onclick="dismissEidBanner()" aria-label="Dismiss">×</button>
+</div>
+<script>
+  // Hide immediately if past cutoff or dismissed this session (avoids flash on reload).
+  // Cutoff date must match EID_OFFERS_CUTOFF in data.js — Riyadh UTC+3, end of day June 1, 2026.
+  (function(){
+    const banner = document.getElementById('eid-banner');
+    const cutoff = new Date('2026-06-02T00:00:00+03:00');
+    if (new Date() >= cutoff || sessionStorage.getItem('eid_banner_dismissed') === '1') {
+      banner.classList.add('dismissed');
+    }
+  })();
+  function dismissEidBanner(){
+    document.getElementById('eid-banner').classList.add('dismissed');
+    sessionStorage.setItem('eid_banner_dismissed', '1');
+  }
+</script>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow eyebrow-line reveal" data-en="Luxury Home Spa Experience" data-ar="تجربة سبا منزلي فاخرة">Luxury Home Spa Experience</div>
+      <h1 class="h-display reveal reveal-d1">
+        <span data-en="Serenity" data-ar="السكينة">Serenity</span>
+        <em data-en="delivered to your" data-ar="تصل إلى">delivered to your</em>
+        <span data-en="doorstep" data-ar="باب منزلك">doorstep</span>
+      </h1>
+      <p class="lead reveal reveal-d2" data-en="Velara Beauty Spa brings the finest spa rituals — massages, Moroccan baths, manicures, and waxing — directly to your home in Riyadh. Relax in your own space while we take care of everything." data-ar="فيلارا بيوتي سبا يقدم لكِ أرقى تجارب السبا — تدليك، حمام مغربي، باديكير ومانيكير، وإزالة الشعر — مباشرة في منزلك في الرياض. استرخي في مساحتك الخاصة ودعينا نهتم بكل شيء.">Velara Beauty Spa brings the finest spa rituals — massages, Moroccan baths, manicures, and waxing — directly to your home in Riyadh. Relax in your own space while we take care of everything.</p>
+      <div class="hero-buttons reveal reveal-d3">
+        <a href="https://www.fresha.com/en-GB/a/velara-spa-home-service-riyadh-king-abdulaziz-rd-al-woroud-district-king-abdullah-ibn-abdulaziz-road-riyadh-11544-saudi-arabia-p25eda7v/all-offer?menu=true&share=true&pId=2792494" target="_blank" class="btn btn-primary" data-en="Book Appointment" data-ar="احجزي موعدك">Book Appointment</a>
+        <a href="services.html" class="btn btn-outline" data-en="Explore Services" data-ar="اكتشفي الخدمات">Explore Services</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal reveal-d2">
+      <div class="hero-img-1"><img src="images/hero1.jpeg" alt="Velara Spa" /></div>
+      <div class="hero-img-2"><img src="images/hero2.jpeg" alt="Velara treatments" /></div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">★</div>
+        <div class="hero-badge-text">
+          <strong data-en="Premium Quality" data-ar="جودة فاخرة">Premium Quality</strong>
+          <span data-en="Certified therapists" data-ar="معالجات معتمدات">Certified therapists</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Service Categories -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:70px;">
+      <div class="eyebrow eyebrow-line reveal" data-en="Our Treatments" data-ar="علاجاتنا">Our Treatments</div>
+      <h2 class="h-section reveal reveal-d1">
+        <span data-en="Curated rituals," data-ar="طقوس مختارة،">Curated rituals,</span>
+        <em data-en="delivered with care" data-ar="بعناية فائقة">delivered with care</em>
+      </h2>
+    </div>
+    <div class="category-grid">
+      <a href="massage.html" class="category-card reveal reveal-d1">
+        <div class="category-image"><img src="images/g1.jpeg" alt="Massage" /></div>
+        <div class="category-body">
+          <h3 data-en="Massage" data-ar="التدليك">Massage</h3>
+          <p data-en="Therapeutic and relaxing massages tailored to your needs." data-ar="تدليكات علاجية ومريحة مصممة لاحتياجاتك.">Therapeutic and relaxing massages tailored to your needs.</p>
+          <span class="category-link" data-en="Explore →" data-ar="اكتشفي →">Explore →</span>
+        </div>
+      </a>
+      <a href="moroccan-bath.html" class="category-card reveal reveal-d2">
+        <div class="category-image"><img src="images/g4.jpeg" alt="Moroccan Bath" /></div>
+        <div class="category-body">
+          <h3 data-en="Moroccan Bath" data-ar="الحمام المغربي">Moroccan Bath</h3>
+          <p data-en="Traditional ritual for deep cleansing and renewal." data-ar="طقس تقليدي للتنظيف العميق والتجديد.">Traditional ritual for deep cleansing and renewal.</p>
+          <span class="category-link" data-en="Explore →" data-ar="اكتشفي →">Explore →</span>
+        </div>
+      </a>
+      <a href="nails.html" class="category-card reveal reveal-d3">
+        <div class="category-image"><img src="images/g3.jpeg" alt="Nails" /></div>
+        <div class="category-body">
+          <h3 data-en="Nails" data-ar="الأظافر">Nails</h3>
+          <p data-en="Manicures, pedicures, gel, biab, and intricate nail art." data-ar="مانيكير وباديكير، جل، بياب، ورسم أظافر متقن.">Manicures, pedicures, gel, biab, and intricate nail art.</p>
+          <span class="category-link" data-en="Explore →" data-ar="اكتشفي →">Explore →</span>
+        </div>
+      </a>
+      <a href="waxing.html" class="category-card reveal reveal-d4">
+        <div class="category-image"><img src="images/g7.jpeg" alt="Waxing" /></div>
+        <div class="category-body">
+          <h3 data-en="Waxing" data-ar="إزالة الشعر">Waxing</h3>
+          <p data-en="Professional waxing using premium products for smooth skin." data-ar="إزالة شعر احترافية بأفضل المنتجات لبشرة ناعمة.">Professional waxing using premium products for smooth skin.</p>
+          <span class="category-link" data-en="Explore →" data-ar="اكتشفي →">Explore →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About snippet -->
+<section class="section" style="background:var(--cream-light);">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature-images reveal">
+        <div class="feature-img-main"><img src="images/about1.jpeg" alt="Velara setup" /></div>
+        <div class="feature-img-accent"><img src="images/about2.jpeg" alt="Velara tools" /></div>
+        <div class="feature-stat">
+          <div class="feature-stat-num">100%</div>
+          <div class="feature-stat-label" data-en="Home Service" data-ar="خدمة منزلية">Home Service</div>
+        </div>
+      </div>
+      <div class="feature-content reveal reveal-d2">
+        <div class="eyebrow eyebrow-line" data-en="About Velara" data-ar="عن فيلارا">About Velara</div>
+        <h2 class="h-section">
+          <span data-en="A sanctuary that" data-ar="ملاذ يأتي">A sanctuary that</span>
+          <em data-en="comes to you" data-ar="إليكِ">comes to you</em>
+        </h2>
+        <p data-en="At Velara Beauty Spa, we believe true relaxation begins where you feel most at home. That's why we bring our complete spa experience — therapists, equipment, premium products, and ambience — directly to your doorstep across Riyadh." data-ar="في فيلارا بيوتي سبا، نؤمن أن الاسترخاء الحقيقي يبدأ حيث تشعرين بالراحة الحقيقية. لذلك نأتي إليكِ بتجربة السبا الكاملة — معالجات، أدوات، منتجات فاخرة، وأجواء راقية — مباشرة في منزلك بالرياض.">At Velara Beauty Spa, we believe true relaxation begins where you feel most at home. That's why we bring our complete spa experience — therapists, equipment, premium products, and ambience — directly to your doorstep across Riyadh.</p>
+        <a href="our-story.html" class="btn btn-outline" style="margin-top:30px;" data-en="Read Our Story" data-ar="اقرئي قصتنا">Read Our Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section">
+  <div class="container-narrow">
+    <div class="eyebrow eyebrow-line reveal" data-en="Ready to begin?" data-ar="مستعدة للبدء؟">Ready to begin?</div>
+    <h2 class="reveal reveal-d1">
+      <span data-en="Your moment of" data-ar="لحظة">Your moment of</span>
+      <em data-en="calm awaits" data-ar="هدوئك تنتظركِ">calm awaits</em>
+    </h2>
+    <p class="reveal reveal-d2" data-en="Book your home spa experience today and rediscover what it means to truly rest." data-ar="احجزي تجربتك المنزلية اليوم واكتشفي معنى الراحة الحقيقية.">Book your home spa experience today and rediscover what it means to truly rest.</p>
+    <div class="cta-buttons reveal reveal-d3">
+      <a href="https://www.fresha.com/en-GB/a/velara-spa-home-service-riyadh-king-abdulaziz-rd-al-woroud-district-king-abdullah-ibn-abdulaziz-road-riyadh-11544-saudi-arabia-p25eda7v/all-offer?menu=true&share=true&pId=2792494" target="_blank" class="btn btn-gold" data-en="Book Now" data-ar="احجزي الآن">Book Now</a>
+      <a href="https://wa.me/966507028521?text=Hello%20Velara%20Spa%2C%20I%27d%20like%20to%20learn%20more." target="_blank" class="btn btn-light" data-en="WhatsApp Us" data-ar="راسلينا">WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Velara Beauty Spa" /></a>
+        <p class="footer-tagline" data-en="Luxury home spa services across Riyadh. Massages, Moroccan baths, nail care, and waxing — delivered with care and discretion." data-ar="خدمات سبا منزلية فاخرة في جميع أنحاء الرياض. تدليك، حمام مغربي، عناية بالأظافر، وإزالة الشعر — تُقدم بعناية ورقي.">Luxury home spa services across Riyadh. Massages, Moroccan baths, nail care, and waxing — delivered with care and discretion.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Explore" data-ar="استكشفي">Explore</h4>
+        <ul>
+          <li><a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
+          <li><a href="services.html" data-en="Spa Services" data-ar="الخدمات">Spa Services</a></li>
+          <li><a href="packages.html" data-en="Packages" data-ar="الباقات">Packages</a></li>
+          <li><a href="gallery.html" data-en="Gallery" data-ar="المعرض">Gallery</a></li>
+          <li><a href="our-story.html" data-en="Our Story" data-ar="قصتنا">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Treatments" data-ar="العلاجات">Treatments</h4>
+        <ul>
+          <li><a href="massage.html" data-en="Massage" data-ar="التدليك">Massage</a></li>
+          <li><a href="moroccan-bath.html" data-en="Moroccan Bath" data-ar="الحمام المغربي">Moroccan Bath</a></li>
+          <li><a href="nails.html" data-en="Nails" data-ar="الأظافر">Nails</a></li>
+          <li><a href="waxing.html" data-en="Waxing" data-ar="إزالة الشعر">Waxing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Contact" data-ar="تواصل">Contact</h4>
+        <ul>
+          <li><a href="tel:+966507028521">+966 50 702 8521</a></li>
+          <li><a href="https://wa.me/966507028521" target="_blank">WhatsApp</a></li>
+          <li><a href="https://maps.app.goo.gl/YijaAuDi3qwFzWi97?g_st=iwb" target="_blank" data-en="Find Us" data-ar="موقعنا">Find Us</a></li>
+          <li><a href="https://www.fresha.com/en-GB/a/velara-spa-home-service-riyadh-king-abdulaziz-rd-al-woroud-district-king-abdullah-ibn-abdulaziz-road-riyadh-11544-saudi-arabia-p25eda7v/all-offer?menu=true&share=true&pId=2792494" target="_blank" data-en="Book on Fresha" data-ar="احجزي على فريشا">Book on Fresha</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div data-en="© 2026 Velara Beauty Spa. All rights reserved." data-ar="© 2026 فيلارا بيوتي سبا. جميع الحقوق محفوظة.">© 2026 Velara Beauty Spa. All rights reserved.</div>
+      <div class="footer-social">
+        <a href="https://wa.me/966507028521" target="_blank" aria-label="WhatsApp">WA</a>
+        <a href="tel:+966507028521" aria-label="Phone">☏</a>
+        <a href="https://maps.app.goo.gl/YijaAuDi3qwFzWi97?g_st=iwb" target="_blank" aria-label="Map">⌖</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/966507028521?text=Hello%20Velara%20Spa%2C%20I%27d%20like%20to%20book%20a%20treatment." class="float-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+<script>setActiveNav('home');</script>
+</body>
+</html>

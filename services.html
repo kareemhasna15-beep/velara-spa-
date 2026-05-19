@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spa Services — Velara Beauty Spa</title>
+<meta name="description" content="Discover the full menu of Velara Beauty Spa treatments — massage, Moroccan bath, nails, and waxing." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Floating language toggle -->
+<button class="lang-toggle" type="button" aria-label="Switch language" onclick="toggleLang()">
+  <span data-en="العربية" data-ar="EN">العربية</span>
+</button>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-top">
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+    <a href="index.html" class="header-logo">
+      <img src="images/logo.png" alt="Velara Beauty Spa" />
+    </a>
+    <div class="header-actions">
+      <a href="https://www.fresha.com/en-GB/a/velara-spa-home-service-riyadh-king-abdulaziz-rd-al-woroud-district-king-abdullah-ibn-abdulaziz-road-riyadh-11544-saudi-arabia-p25eda7v/all-offer?menu=true&share=true&pId=2792494" target="_blank" class="book-btn" data-en="Book Now" data-ar="احجزي">Book Now</a>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <ul class="nav-list">
+      <li><a href="index.html" data-page="home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+      <li><a href="services.html" data-page="services" data-en="Spa Services" data-ar="الخدمات">Spa Services</a></li>
+      <li><a href="massage.html" data-page="massage" data-en="Massage" data-ar="التدليك">Massage</a></li>
+      <li><a href="moroccan-bath.html" data-page="moroccan" data-en="Moroccan Bath" data-ar="الحمام المغربي">Moroccan Bath</a></li>
+      <li><a href="nails.html" data-page="nails" data-en="Nails" data-ar="الأظافر">Nails</a></li>
+      <li><a href="waxing.html" data-page="waxing" data-en="Waxing" data-ar="إزالة الشعر">Waxing</a></li>
+      <li><a href="packages.html" data-page="packages" data-en="Packages" data-ar="الباقات">Packages</a></li>
+      <li><a href="gallery.html" data-page="gallery" data-en="Gallery" data-ar="المعرض">Gallery</a></li>
+      <li><a href="our-story.html" data-page="story" data-en="Our Story" data-ar="قصتنا">Our Story</a></li>
+      <li><a href="contact.html" data-page="contact" data-en="Contact" data-ar="تواصل">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+<section class="page-banner">
+  <div class="container">
+    <div class="eyebrow eyebrow-line page-enter" data-en="Our Treatments" data-ar="علاجاتنا">Our Treatments</div>
+    <h1 class="page-enter page-enter-d1">
+      <span data-en="Spa" data-ar="خدمات">Spa</span>
+      <em data-en="Services" data-ar="السبا">Services</em>
+    </h1>
+    <p class="page-enter page-enter-d2" data-en="A complete menu of treatments designed to restore balance and radiance — performed in the privacy of your home." data-ar="قائمة كاملة من العلاجات المصممة لاستعادة التوازن والإشراق — تُقدم في خصوصية منزلك.">A complete menu of treatments designed to restore balance and radiance — performed in the privacy of your home.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="category-grid">
+      <a href="massage.html" class="category-card reveal">
+        <div class="category-image"><img src="images/g1.jpeg" alt="Massage" /></div>
+        <div class="category-body">
+          <h3 data-en="Massage" data-ar="التدليك">Massage</h3>
+          <p data-en="Swedish, deep tissue, Thai, hot stone, cupping, reflexology and more." data-ar="سويدي، أنسجة عميقة، تايلندي، حجارة ساخنة، كاسات هواء، انعكاسي والمزيد.">Swedish, deep tissue, Thai, hot stone, cupping, reflexology and more.</p>
+          <span class="category-link" data-en="View Menu →" data-ar="عرض القائمة →">View Menu →</span>
+        </div>
+      </a>
+      <a href="moroccan-bath.html" class="category-card reveal reveal-d1">
+        <div class="category-image"><img src="images/g4.jpeg" alt="Moroccan Bath" /></div>
+        <div class="category-body">
+          <h3 data-en="Moroccan Bath" data-ar="الحمام المغربي">Moroccan Bath</h3>
+          <p data-en="Classic and Royal rituals for deep cleansing, exfoliation, and renewal." data-ar="طقوس كلاسيكية وملكية للتنظيف العميق والتقشير والتجديد.">Classic and Royal rituals for deep cleansing, exfoliation, and renewal.</p>
+          <span class="category-link" data-en="View Menu →" data-ar="عرض القائمة →">View Menu →</span>
+        </div>
+      </a>
+      <a href="nails.html" class="category-card reveal reveal-d2">
+        <div class="category-image"><img src="images/g3.jpeg" alt="Nails" /></div>
+        <div class="category-body">
+          <h3 data-en="Nails" data-ar="الأظافر">Nails</h3>
+          <p data-en="Classic, Russian, gel, biab, extensions, French, ombre, and nail art." data-ar="كلاسيك، روسي، جل، بياب، تطويل، فرنش، أومبري، ورسم.">Classic, Russian, gel, biab, extensions, French, ombre, and nail art.</p>
+          <span class="category-link" data-en="View Menu →" data-ar="عرض القائمة →">View Menu →</span>
+        </div>
+      </a>
+      <a href="waxing.html" class="category-card reveal reveal-d3">
+        <div class="category-image"><img src="images/g7.jpeg" alt="Waxing" /></div>
+        <div class="category-body">
+          <h3 data-en="Waxing" data-ar="إزالة الشعر">Waxing</h3>
+          <p data-en="Full body, legs, arms, eyebrows — premium quality wax for lasting smoothness." data-ar="كامل الجسم، أرجل، أيدي، حواجب — شمع عالي الجودة لنعومة دائمة.">Full body, legs, arms, eyebrows — premium quality wax for lasting smoothness.</p>
+          <span class="category-link" data-en="View Menu →" data-ar="عرض القائمة →">View Menu →</span>
+        </div>
+      </a>
+      <a href="packages.html" class="category-card reveal reveal-d4" style="grid-column:span 2;">
+        <div class="category-image" style="height:200px;"><img src="images/g5.jpeg" alt="Packages" /></div>
+        <div class="category-body">
+          <h3 data-en="Signature Packages & Eid Offers" data-ar="الباقات المميزة وعروض العيد">Signature Packages & Eid Offers</h3>
+          <p data-en="Birthday and Bridal packages, lymphatic slimming series, and limited Eid pricing." data-ar="باقات عيد الميلاد والعروس، جلسات ليمفاوية، وعروض العيد محدودة المدة.">Birthday and Bridal packages, lymphatic slimming series, and limited Eid pricing.</p>
+          <span class="category-link" data-en="View Packages →" data-ar="عرض الباقات →">View Packages →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Velara Beauty Spa" /></a>
+        <p class="footer-tagline" data-en="Luxury home spa services across Riyadh. Massages, Moroccan baths, nail care, and waxing — delivered with care and discretion." data-ar="خدمات سبا منزلية فاخرة في جميع أنحاء الرياض. تدليك، حمام مغربي، عناية بالأظافر، وإزالة الشعر — تُقدم بعناية ورقي.">Luxury home spa services across Riyadh. Massages, Moroccan baths, nail care, and waxing — delivered with care and discretion.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Explore" data-ar="استكشفي">Explore</h4>
+        <ul>
+          <li><a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
+          <li><a href="services.html" data-en="Spa Services" data-ar="الخدمات">Spa Services</a></li>
+          <li><a href="packages.html" data-en="Packages" data-ar="الباقات">Packages</a></li>
+          <li><a href="gallery.html" data-en="Gallery" data-ar="المعرض">Gallery</a></li>
+          <li><a href="our-story.html" data-en="Our Story" data-ar="قصتنا">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Treatments" data-ar="العلاجات">Treatments</h4>
+        <ul>
+          <li><a href="massage.html" data-en="Massage" data-ar="التدليك">Massage</a></li>
+          <li><a href="moroccan-bath.html" data-en="Moroccan Bath" data-ar="الحمام المغربي">Moroccan Bath</a></li>
+          <li><a href="nails.html" data-en="Nails" data-ar="الأظافر">Nails</a></li>
+          <li><a href="waxing.html" data-en="Waxing" data-ar="إزالة الشعر">Waxing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Contact" data-ar="تواصل">Contact</h4>
+        <ul>
+          <li><a href="tel:+966507028521">+966 50 702 8521</a></li>
+          <li><a href="https://wa.me/966507028521" target="_blank">WhatsApp</a></li>
+          <li><a href="https://maps.app.goo.gl/YijaAuDi3qwFzWi97?g_st=iwb" target="_blank" data-en="Find Us" data-ar="موقعنا">Find Us</a></li>
+          <li><a href="https://www.fresha.com/en-GB/a/velara-spa-home-service-riyadh-king-abdulaziz-rd-al-woroud-district-king-abdullah-ibn-abdulaziz-road-riyadh-11544-saudi-arabia-p25eda7v/all-offer?menu=true&share=true&pId=2792494" target="_blank" data-en="Book on Fresha" data-ar="احجزي على فريشا">Book on Fresha</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div data-en="© 2026 Velara Beauty Spa. All rights reserved." data-ar="© 2026 فيلارا بيوتي سبا. جميع الحقوق محفوظة.">© 2026 Velara Beauty Spa. All rights reserved.</div>
+      <div class="footer-social">
+        <a href="https://wa.me/966507028521" target="_blank" aria-label="WhatsApp">WA</a>
+        <a href="tel:+966507028521" aria-label="Phone">☏</a>
+        <a href="https://maps.app.goo.gl/YijaAuDi3qwFzWi97?g_st=iwb" target="_blank" aria-label="Map">⌖</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/966507028521?text=Hello%20Velara%20Spa%2C%20I%27d%20like%20to%20book%20a%20treatment." class="float-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+<script>setActiveNav('services');</script>
+</body>
+</html>
