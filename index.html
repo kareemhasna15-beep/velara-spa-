@@ -122,7 +122,7 @@
     <div class="eid-banner-icon">✦</div>
     <div class="eid-banner-text">
       <strong data-en="Eid Al Adha Special Offers" data-ar="عروض عيد الأضحى">Eid Al Adha Special Offers</strong>
-      <span data-en="— Save up to 35%" data-ar="— وفّري حتى 35%">— Save up to 35%</span>
+      <span data-en="— Save up to 30%" data-ar="— وفّري حتى 30%">— Save up to 30%</span>
     </div>
     <a href="packages.html#eid-offers" class="eid-banner-link" data-en="View Offers →" data-ar="عرض العروض →">View Offers →</a>
   </div>
@@ -130,10 +130,10 @@
 </div>
 <script>
   // Hide immediately if past cutoff or dismissed this session (avoids flash on reload).
-  // Cutoff date must match EID_OFFERS_CUTOFF in data.js — Riyadh UTC+3, end of day June 1, 2026.
+  // Cutoff date must match EID_OFFERS_CUTOFF in data.js — Riyadh UTC+3, 11:59 PM June 7, 2026.
   (function(){
     const banner = document.getElementById('eid-banner');
-    const cutoff = new Date('2026-06-02T00:00:00+03:00');
+    const cutoff = new Date('2026-06-08T00:00:00+03:00');
     if (new Date() >= cutoff || sessionStorage.getItem('eid_banner_dismissed') === '1') {
       banner.classList.add('dismissed');
     }

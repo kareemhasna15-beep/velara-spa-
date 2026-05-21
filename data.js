@@ -172,7 +172,7 @@ const PACKAGES_DATA = [
    newPrice:3499, featured:false}
 ];
 
-// Eid offers visibility cutoff — hide everywhere after end of day June 1, 2026 in Riyadh (UTC+3).
+// Eid offers visibility cutoff — hide everywhere after 11:59 PM June 7, 2026 in Riyadh (UTC+3).
 // Source of truth: if you change this, also update the inline timestamp in index.html (eid-banner script).
-const EID_OFFERS_CUTOFF = new Date('2026-06-02T00:00:00+03:00');
+const EID_OFFERS_CUTOFF = new Date('2026-06-08T00:00:00+03:00');
 function isEidOffersActive(){ return new Date() < EID_OFFERS_CUTOFF; }
