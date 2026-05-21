@@ -82,20 +82,19 @@ function updateBookingLinks() {
 // =========================================
 // TIKTOK ANALYTICS — ClickButton event for every WhatsApp booking click
 // =========================================
-// Single document-level click listener that fires
-//   ttq.track('ClickButton', { contents: [...], value: 0, currency: 'SAR' })
+// Single document-level click listener that fires ttq.track('ClickButton', ...)
 // on every click of a [data-wa-book] element or any anchor whose href contains
-// wa.me. `value` MUST be the JS Number 0 (not the string "0" or "0 SAR") —
-// TikTok's validator rejects strings with a "purchase value is invalid" warning.
+// wa.me. We deliberately do NOT pass `value` or `currency` here — TikTok's
+// validator auto-classifies events with currency as purchase-style and flags
+// "purchase value is invalid" whenever value is 0 or missing. ClickButton is
+// an engagement event, not a sale, so just the contents identifier is sent.
 function initTikTokTracking() {
   document.addEventListener('click', function(e) {
     const el = e.target.closest('[data-wa-book], a[href*="wa.me"]');
     if (!el) return;
     if (typeof ttq !== 'undefined') {
       ttq.track('ClickButton', {
-        contents: [{ content_name: 'WhatsApp Booking' }],
-        value: 0,            // plain Number, never quoted
-        currency: 'SAR'
+        contents: [{ content_name: 'WhatsApp Booking' }]
       });
     }
   });
