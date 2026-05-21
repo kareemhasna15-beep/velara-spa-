@@ -82,13 +82,11 @@ function updateBookingLinks() {
 // =========================================
 // TIKTOK ANALYTICS — ClickButton event for every WhatsApp booking click
 // =========================================
-// Single document-level click listener replaces 20+ inline onclick attributes.
-// Covers both static [data-wa-book] buttons and dynamically rendered links
-// (service rows, package cards) whose href contains wa.me. Identical to the
-// per-button onclick approach from TikTok's docs:
-//   onclick="if(typeof ttq !== 'undefined') ttq.track('ClickButton', ...)"
-// Our WhatsApp links use target="_blank" so the current page never navigates,
-// which guarantees the track() call lands before the new tab opens.
+// Single document-level click listener that fires
+//   ttq.track('ClickButton', { contents: [...], value: 0, currency: 'SAR' })
+// on every click of a [data-wa-book] element or any anchor whose href contains
+// wa.me. `value` MUST be the JS Number 0 (not the string "0" or "0 SAR") —
+// TikTok's validator rejects strings with a "purchase value is invalid" warning.
 function initTikTokTracking() {
   document.addEventListener('click', function(e) {
     const el = e.target.closest('[data-wa-book], a[href*="wa.me"]');
@@ -96,7 +94,7 @@ function initTikTokTracking() {
     if (typeof ttq !== 'undefined') {
       ttq.track('ClickButton', {
         contents: [{ content_name: 'WhatsApp Booking' }],
-        value: 0,
+        value: 0,            // plain Number, never quoted
         currency: 'SAR'
       });
     }
