@@ -80,6 +80,30 @@ function updateBookingLinks() {
 }
 
 // =========================================
+// TIKTOK ANALYTICS — ClickButton event for every WhatsApp booking click
+// =========================================
+// Single document-level click listener replaces 20+ inline onclick attributes.
+// Covers both static [data-wa-book] buttons and dynamically rendered links
+// (service rows, package cards) whose href contains wa.me. Identical to the
+// per-button onclick approach from TikTok's docs:
+//   onclick="if(typeof ttq !== 'undefined') ttq.track('ClickButton', ...)"
+// Our WhatsApp links use target="_blank" so the current page never navigates,
+// which guarantees the track() call lands before the new tab opens.
+function initTikTokTracking() {
+  document.addEventListener('click', function(e) {
+    const el = e.target.closest('[data-wa-book], a[href*="wa.me"]');
+    if (!el) return;
+    if (typeof ttq !== 'undefined') {
+      ttq.track('ClickButton', {
+        contents: [{ content_name: 'WhatsApp Booking' }],
+        value: 0,
+        currency: 'SAR'
+      });
+    }
+  });
+}
+
+// =========================================
 // SITE CONFIG APPLICATION — pushes SITE_CONFIG values into the DOM
 // =========================================
 // Runs on DOMContentLoaded and on every language switch. Updates:
@@ -211,8 +235,9 @@ function setActiveNav(page){
 // INIT ON LOAD
 // =========================================
 document.addEventListener('DOMContentLoaded', () => {
-  initLang();        // also calls applySiteConfig() via setLang()
+  initLang();             // also calls applySiteConfig() via setLang()
   initReveal();
   initHeader();
   initMobileMenu();
+  initTikTokTracking();
 });
