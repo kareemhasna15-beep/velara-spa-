@@ -42,5 +42,13 @@ yarn-error.log*
 *.bak
 images/logo.png.backup
 
+# Image originals (uncompressed source JPEGs — too large for the repo,
+# replaced in production by smaller resized versions in images/)
+images/originals/
+
+# Working / source files (not part of the deployed site)
+services-pricing.xlsx
+logo-variations.pdf
+
 # Logs
 *.log

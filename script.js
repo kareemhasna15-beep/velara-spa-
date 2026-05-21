@@ -2,13 +2,121 @@
 // VELARA BEAUTY SPA — SHARED JS
 // =========================================
 
-const FRESHA_URL = 'https://www.fresha.com/en-GB/a/velara-spa-home-service-riyadh-king-abdulaziz-rd-al-woroud-district-king-abdullah-ibn-abdulaziz-road-riyadh-11544-saudi-arabia-p25eda7v/all-offer?menu=true&share=true&pId=2792494';
-const MAPS_URL = 'https://maps.app.goo.gl/YijaAuDi3qwFzWi97?g_st=iwb';
-const PHONE = '+966507028521';
-const PHONE_DISPLAY = '+966 50 702 8521';
+// Site-wide values now live in SITE_CONFIG (data.js). The aliases below stay
+// for the rest of this file to keep references short; edit data.js to change them.
+const WHATSAPP_NUMBER = SITE_CONFIG.whatsappNumber;
+const MAPS_URL        = SITE_CONFIG.mapsUrl;
+const PHONE           = '+' + SITE_CONFIG.whatsappNumber;
+const PHONE_DISPLAY   = SITE_CONFIG.phoneDisplay;
 
-function waLink(message){
-  return `https://wa.me/966507028521?text=${encodeURIComponent(message)}`;
+// =========================================
+// WHATSAPP BOOKING — message templates + URL builder
+// =========================================
+// All bookings funnel through wa.me with a pre-filled message that adapts to
+// the user's current language and the context they clicked from.
+const BOOKING_MESSAGES = {
+  generic: {
+    en: "Hi Velara, I'd like to book an appointment.",
+    ar: "مرحباً فيلارا، أرغب في حجز موعد."
+  },
+  category: {
+    en: (cat) => `Hi Velara, I'd like to book a ${cat} appointment.`,
+    ar: (cat) => `مرحباً فيلارا، أرغب في حجز موعد ${cat}.`
+  },
+  treatment: {
+    en: (name, price) => `Hi Velara, I'd like to book: ${name} — ${price} SAR.`,
+    ar: (name, price) => `مرحباً فيلارا، أرغب في حجز: ${name} — ${price} ريال.`
+  },
+  offer: {
+    en: (name, price) => `Hi Velara, I'd like to book the ${name} offer — ${price} SAR.`,
+    ar: (name, price) => `مرحباً فيلارا، أرغب في حجز عرض ${name} — ${price} ريال.`
+  },
+  question: {
+    en: "Hi Velara, I have a question.",
+    ar: "مرحباً فيلارا، عندي استفسار."
+  }
+};
+
+// Localized category labels for the {category} placeholder.
+const CATEGORY_LABELS = {
+  massage:  { en: 'massage',       ar: 'تدليك' },
+  moroccan: { en: 'Moroccan bath', ar: 'حمام مغربي' },
+  nails:    { en: 'nails',         ar: 'أظافر' },
+  waxing:   { en: 'waxing',        ar: 'إزالة شعر' }
+};
+
+// Build a wa.me URL with a pre-filled message in the given (or current) language.
+// messageKey: 'generic' | 'category' | 'treatment' | 'offer' | 'question'
+// args: depend on the key (e.g. waBook('treatment', name, price))
+function waBook(messageKey, ...args) {
+  const lang = localStorage.getItem('velara_lang') || 'en';
+  const entry = BOOKING_MESSAGES[messageKey] || BOOKING_MESSAGES.generic;
+  const tpl = entry[lang];
+  const msg = typeof tpl === 'function' ? tpl(...args) : tpl;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+// Legacy helper kept for any inline callers that pre-compose their own message.
+function waLink(message) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+// Rewrite href on every element with [data-wa-book] so static buttons get
+// the right localized URL on initial load and every language switch.
+function updateBookingLinks() {
+  const lang = localStorage.getItem('velara_lang') || 'en';
+  document.querySelectorAll('[data-wa-book]').forEach(a => {
+    const key = a.dataset.waBook;
+    const args = [];
+    if (key === 'category') {
+      const cat = a.dataset.waCategory || '';
+      const label = (CATEGORY_LABELS[cat] && CATEGORY_LABELS[cat][lang]) || cat;
+      args.push(label);
+    }
+    a.href = waBook(key, ...args);
+    if (!a.target) a.target = '_blank';
+    if (!a.rel) a.rel = 'noopener';
+  });
+}
+
+// =========================================
+// SITE CONFIG APPLICATION — pushes SITE_CONFIG values into the DOM
+// =========================================
+// Runs on DOMContentLoaded and on every language switch. Updates:
+//   - All tel: hrefs to use SITE_CONFIG.whatsappNumber
+//   - Phone-display text inside tel: anchors (only if the existing text looks
+//     like a phone number — leaves "Call Us" / "اتصلي بنا" buttons untouched)
+//   - All Google Maps URLs in href attributes
+//   - Elements with [data-cfg-hours] and [data-cfg-area] (contact page spans)
+function applySiteConfig() {
+  if (typeof SITE_CONFIG === 'undefined') return;
+  const cfg = SITE_CONFIG;
+  const lang = localStorage.getItem('velara_lang') || 'en';
+  const phoneRegex = /\+?\s*966[\s\-]*\d{2}[\s\-]*\d{3}[\s\-]*\d{4}/;
+
+  // tel: hrefs
+  document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+    a.href = 'tel:+' + cfg.whatsappNumber;
+    // If the link text is itself a phone number (not a button label), refresh it too.
+    if (a.children.length === 0 && phoneRegex.test(a.textContent)) {
+      a.textContent = cfg.phoneDisplay;
+    }
+  });
+
+  // Maps URLs (any of the common Google Maps host patterns)
+  document.querySelectorAll(
+    'a[href*="maps.app.goo.gl"], a[href*="goo.gl/maps"], a[href*="google.com/maps"]'
+  ).forEach(a => {
+    a.href = cfg.mapsUrl;
+  });
+
+  // Localized hours + service area (contact page)
+  document.querySelectorAll('[data-cfg-hours]').forEach(el => {
+    el.textContent = cfg.hours[lang] || cfg.hours.en;
+  });
+  document.querySelectorAll('[data-cfg-area]').forEach(el => {
+    el.textContent = cfg.serviceArea[lang] || cfg.serviceArea.en;
+  });
 }
 
 // =========================================
@@ -29,6 +137,12 @@ function setLang(lang, ev){
 
   // Re-render dynamic lists if a render function is defined for the page
   if(typeof renderPageContent === 'function') renderPageContent(lang);
+
+  // Refresh static WhatsApp booking links so their pre-filled text matches the new language
+  updateBookingLinks();
+
+  // Refresh language-dependent SITE_CONFIG fields (hours, service area)
+  applySiteConfig();
 }
 
 function initLang(){
@@ -97,7 +211,7 @@ function setActiveNav(page){
 // INIT ON LOAD
 // =========================================
 document.addEventListener('DOMContentLoaded', () => {
-  initLang();
+  initLang();        // also calls applySiteConfig() via setLang()
   initReveal();
   initHeader();
   initMobileMenu();

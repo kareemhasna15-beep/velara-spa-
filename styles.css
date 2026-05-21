@@ -46,10 +46,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
    LANGUAGE TOGGLE (floating, top-left)
    Single-button toggle that shows the inactive language as the click target.
    Top-left chosen to avoid colliding with .book-btn (top-right) on all viewport sizes.
+   Sized with fixed min-height / min-width and flex centering so the button does
+   NOT shift, jump, or change height when the label swaps between "العربية" and "EN".
+   No transform: scale() — keeps the position rock-stable on hover/focus/click.
    ========================================= */
 .lang-toggle{
   position:fixed;
-  top:20px;left:20px;
+  top:24px;left:24px;
   z-index:1100;
   background:rgba(46,92,88,0.92);
   -webkit-backdrop-filter:blur(10px);
@@ -57,29 +60,39 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   color:#fff;
   font-family:inherit;
   font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500;
-  padding:9px 18px;
+  padding:0 18px;
+  min-height:36px;
+  min-width:60px;
   border:1px solid rgba(255,255,255,0.18);
   border-radius:50px;
   box-shadow:0 6px 20px rgba(0,0,0,0.15);
-  transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   cursor:pointer;
   line-height:1;
   white-space:nowrap;
+  transition:background .25s ease, box-shadow .25s ease, color .25s ease;
 }
-.lang-toggle:hover,
-.lang-toggle:focus-visible{
-  transform:scale(1.06);
+.lang-toggle:hover{
   background:rgba(46,92,88,1);
   box-shadow:0 10px 26px rgba(46,92,88,0.35);
-  outline:none;
 }
-.lang-toggle:active{transform:scale(0.97);}
+.lang-toggle:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px;
+}
+.lang-toggle:active{
+  background:rgba(36,72,68,1);
+}
 @media (max-width:768px){
   .lang-toggle{
-    top:14px;left:75px;
-    padding:7px 13px;
+    top:18px;left:75px;
+    padding:0 14px;
     font-size:10px;
     letter-spacing:1.2px;
+    min-height:30px;
+    min-width:50px;
   }
 }
 
@@ -599,6 +612,40 @@ body[dir="rtl"] .service-info h4{font-family:var(--arabic);font-size:20px;}
    GALLERY
    ========================================= */
 .gallery{background:var(--cream-light);}
+
+/* Gallery placeholder — shown while we wait for new photos. Remove or restore the
+   .gallery-grid markup in gallery.html when a real collection is added. */
+.gallery-placeholder{
+  text-align:center;
+  padding:50px 20px 30px;
+  max-width:680px;margin:0 auto;
+}
+.gallery-placeholder-icon{
+  width:90px;height:90px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 100%);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:34px;line-height:1;
+  margin:0 auto 32px;
+  box-shadow:0 14px 36px rgba(201,168,106,0.30);
+}
+.gallery-placeholder h2{
+  font-family:var(--display);
+  font-size:clamp(36px,5vw,56px);
+  font-weight:400;line-height:1.15;
+  margin-bottom:18px;color:var(--charcoal);
+}
+.gallery-placeholder h2 em{font-style:italic;color:var(--teal-dark);}
+.gallery-placeholder p{
+  font-size:17px;line-height:1.75;color:var(--muted);
+  max-width:540px;margin:0 auto 32px;
+}
+@media (max-width:768px){
+  .gallery-placeholder{padding:30px 16px 10px;}
+  .gallery-placeholder-icon{width:74px;height:74px;font-size:28px;margin-bottom:24px;}
+  .gallery-placeholder p{font-size:15px;}
+}
+
 .gallery-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -616,6 +663,128 @@ body[dir="rtl"] .service-info h4{font-family:var(--arabic);font-size:20px;}
 .gallery-item:hover img{transform:scale(1.08);}
 .gallery-item:nth-child(1){grid-column:span 2;grid-row:span 2;}
 .gallery-item:nth-child(4){grid-row:span 2;}
+
+/* =========================================
+   FEATURED SECTION (homepage highlight reel)
+   ========================================= */
+.featured-section{
+  background:linear-gradient(180deg,var(--cream-pale) 0%,var(--cream-light) 100%);
+  position:relative;
+  overflow:hidden;
+}
+.featured-section::before{
+  content:'';position:absolute;
+  top:-80px;right:-100px;width:380px;height:380px;
+  background:radial-gradient(circle,rgba(201,168,106,0.12) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.featured-section::after{
+  content:'';position:absolute;
+  bottom:-100px;left:-100px;width:380px;height:380px;
+  background:radial-gradient(circle,rgba(107,181,176,0.1) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.featured-section .container{position:relative;z-index:1;}
+
+.featured-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+  max-width:1100px;margin:0 auto;
+}
+.featured-grid-single{
+  grid-template-columns:minmax(280px,420px);
+  justify-content:center;
+}
+
+.featured-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:34px 30px;
+  position:relative;
+  transition:transform .4s cubic-bezier(0.16,1,0.3,1), box-shadow .4s ease;
+  box-shadow:0 6px 24px rgba(0,0,0,0.05);
+  display:flex;flex-direction:column;
+}
+.featured-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 50px rgba(74,138,134,0.16);
+}
+/* Gold accent line on top for Signature, teal accent for Eid */
+.featured-card::before{
+  content:'';position:absolute;
+  top:0;left:32px;right:32px;height:3px;border-radius:0 0 3px 3px;
+  background:linear-gradient(90deg,var(--gold-light),var(--gold),var(--gold-light));
+}
+.featured-card-eid::before{
+  background:linear-gradient(90deg,var(--teal-soft),var(--teal-dark),var(--teal-soft));
+}
+
+.featured-badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:50px;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;
+  margin-bottom:18px;
+  align-self:flex-start;
+}
+.featured-badge-signature{background:var(--gold);color:var(--charcoal);}
+.featured-badge-eid{background:var(--teal-dark);color:#fff;}
+
+.featured-card h3{
+  font-family:var(--display);
+  font-size:26px;line-height:1.2;
+  color:var(--charcoal);
+  margin-bottom:6px;
+}
+.featured-arabic{
+  font-family:var(--arabic);
+  font-size:14px;color:var(--teal-dark);
+  direction:rtl;margin-bottom:16px;
+}
+body[dir="rtl"] .featured-arabic{font-family:var(--arabic);}
+
+.featured-meta{
+  font-size:13px;line-height:1.7;color:var(--muted);
+  margin-bottom:18px;
+}
+.featured-meta strong{color:var(--charcoal);font-weight:500;}
+
+.featured-pricing{
+  display:flex;align-items:baseline;gap:12px;
+  margin-bottom:10px;flex-wrap:wrap;
+}
+.featured-price-new{
+  font-family:var(--display);
+  font-size:36px;font-weight:600;
+  color:var(--teal-dark);line-height:1;
+}
+.featured-price-old{
+  font-size:15px;text-decoration:line-through;
+  color:var(--muted);
+}
+.featured-save{
+  display:inline-block;
+  background:rgba(201,168,106,0.18);
+  color:var(--charcoal);
+  padding:4px 12px;border-radius:50px;
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
+  margin-bottom:18px;
+  align-self:flex-start;
+}
+
+.featured-cta{
+  margin-top:auto;
+  width:100%;justify-content:center;
+}
+
+@media (max-width:768px){
+  .featured-grid{gap:18px;}
+  .featured-card{padding:28px 24px;}
+  .featured-card h3{font-size:23px;}
+  .featured-price-new{font-size:32px;}
+}
 
 /* =========================================
    CTA SECTION

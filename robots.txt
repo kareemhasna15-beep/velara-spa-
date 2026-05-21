@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Don't crawl working files
+Disallow: /services-pricing.xlsx
+Disallow: /logo-variations.pdf
+Disallow: /*.backup$
+
+Sitemap: https://velara.beauty/sitemap.xml
